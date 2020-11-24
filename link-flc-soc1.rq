@@ -1,4 +1,4 @@
-#+ endpoint: http://localhost:1234/sparql
+#+ endpoint: http://localhost:1234/sparql/
 
 prefix obo: <http://purl.obolibrary.org/obo/>
 prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
@@ -17,9 +17,10 @@ WHERE{
 
 # determine the QTL interval
 VALUES ?ref{ TAIR10:5 }
-FILTER (?begin_pos >= 10000000 && ?end_pos <= 11000000) .
+FILTER (?begin_pos >= 2000000 && ?end_pos <= 4000000) .
 
 # get the list of candidate in the QTL interval
+?gene a                     obo:SO_0001217 .
 ?gene faldo:location            ?gene_loc .
 ?gene_loc faldo:begin           ?begin ;
           faldo:end             ?end ;
@@ -28,22 +29,19 @@ FILTER (?begin_pos >= 10000000 && ?end_pos <= 11000000) .
           ?end faldo:position   ?end_pos .
 
 # query the candidate that interact with the target gene
-?gene (resource:SIO_000701|^resource:SIO_000701) ensembl:AT1G63700 ;
+?gene (resource:SIO_000701|^resource:SIO_000701) ensembl:AT2G45660 ;
       obo:RO_0000056 ?interaction .
-ensembl:AT1G63700 obo:RO_0000056 ?interaction .
+ensembl:AT2G45660 obo:RO_0000056 ?interaction .
 ?interaction a ?interaction_type .
 ?interaction_type rdfs:label ?interaction_label .
 
 # query the candidate that shared bp go term
-?gene resource:SIO_000255 ?go2 .
-
-{ensembl:AT1G63700 resource:SIO_000255 ?go2 .}
-UNION
-{ensembl:AT1G63700 resource:SIO_000255 ?go1 .
-?go1 (rdfs:subClassOf|^rdfs:subClassOf){,2} ?go2}
+?gene resource:SIO_000255 ?go1 .
+ensembl:AT2G45660 resource:SIO_000255 ?go2 .
 
 ?go2 oboInOwl:hasOBONamespace "biological_process"^^<http://www.w3.org/2001/XMLSchema#string> ;
-    rdfs:label ?function .
+     (rdfs:subClassOf|^rdfs:subClassOf){,2} ?go1 ;
+     rdfs:label ?function .
 
 # get the gene label
 ?gene rdfs:label ?regulator .
