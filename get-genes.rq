@@ -1,4 +1,11 @@
+#+ summary: Returns the genes located on a particular chromosome and interval
 #+ endpoint: http://localhost:1234/sparql/
+#+ tags:
+#+   - regulator
+#+ defaults:
+#+   - chr: chromosome
+#+   - start: start Bp
+#+   - end: end Bp
 
 prefix obo: <http://purl.obolibrary.org/obo/>
 prefix faldo: <http://biohackathon.org/resource/faldo#>
