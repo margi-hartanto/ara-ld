@@ -9,8 +9,8 @@ SELECT DISTINCT (str(?regulator) AS ?candidate_gene)
 WHERE{
 
 # determine the QTL interval
-VALUES ?ref{ TAIR10:5 }
-FILTER (?begin_pos >= 2000000 && ?end_pos <= 4000000) .
+VALUES ?ref{ TAIR10:?_chromosome_integer }
+FILTER (?begin_pos >= ?_start_integer && ?end_pos <= ?_end_integer) .
 
 # get the list of candidate in the QTL interval
 ?gene a                     obo:SO_0001217 .
