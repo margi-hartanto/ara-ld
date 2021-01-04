@@ -1,6 +1,11 @@
 #+ summary: Get all genes located in a specified genomic interval.
 #+ tags:
 #+  - Get all genes located in a specified genomic interval.
+#+ defaults:
+#+  - chrom: "5"
+#+  - begin: "2000000"
+#+  - end: "4000000"
+
 
 
 prefix obo: <http://purl.obolibrary.org/obo/>
@@ -12,8 +17,8 @@ SELECT DISTINCT (str(?regulator) AS ?candidate_gene)
 WHERE{
 
 # determine the QTL interval
-VALUES ?ref{ TAIR10:5 }
-FILTER (?begin_pos >= 2000000 && ?end_pos <= 4000000) .
+VALUES ?ref{ TAIR10:?_chrom_xsd_integer }
+FILTER (?begin_pos >= ?_begin_xsd_integer && ?end_pos <= ?_end_xsd_integer) .
 
 # get the list of candidate in the QTL interval
 ?gene a                     obo:SO_0001217 .
