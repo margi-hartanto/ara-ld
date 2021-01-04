@@ -1,7 +1,6 @@
 #+ summary: Get all genes located in a specified genomic interval.
 #+ tags:
 #+  - Get all genes located in a specified genomic interval.
-#+ defaults:
 #+  - chrom: "TAIR10:5"
 #+  - begin: "2000000"
 #+  - end: "4000000"
@@ -17,7 +16,7 @@ SELECT DISTINCT (str(?regulator) AS ?candidate_gene)
 WHERE{
 
 # determine the QTL interval
-VALUES ?ref{ ?_chrom_iri }
+VALUES ?ref{ ?TAIR10:5 }
 FILTER (?begin_pos >= ?_begin_xsd_integer && ?end_pos <= ?_end_xsd_integer) .
 
 # get the list of candidate in the QTL interval
