@@ -1,4 +1,3 @@
-#+ summary: Get all genes located in a specified genomic interval.
 #+ tags:
 #+  - Get all genes located in a specified genomic interval.
 #+ defaults:
@@ -22,11 +21,9 @@ PREFIX bif: <bif:>
 SELECT DISTINCT (str(?regulator) AS ?candidate_gene)
 WHERE{
 
-# determine the QTL interval
 VALUES ?ref{ TAIR10:5 }
 FILTER (?begin_pos >= ?_begin_xsd_integer && ?end_pos <= ?_end_xsd_integer) .
 
-# get the list of candidate in the QTL interval
 ?gene a                     obo:SO_0001217 .
 ?gene faldo:location            ?gene_loc .
 ?gene_loc faldo:begin           ?begin ;
