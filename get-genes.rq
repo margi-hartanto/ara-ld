@@ -1,6 +1,6 @@
-#+ summary: Get the genes located in a specified interval.
+#+ summary: Get all genes located in a specified genomic interval.
 #+ tags:
-#+  - Get the genes located in a specified interval.
+#+  - Get all genes located in a specified genomic interval.
 
 
 prefix obo: <http://purl.obolibrary.org/obo/>
