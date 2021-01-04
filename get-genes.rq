@@ -16,7 +16,7 @@ SELECT DISTINCT (str(?regulator) AS ?candidate_gene)
 WHERE{
 
 # determine the QTL interval
-VALUES ?ref{ ?TAIR10:5 }
+VALUES ?ref{ TAIR10:5 }
 FILTER (?begin_pos >= ?_begin_xsd_integer && ?end_pos <= ?_end_xsd_integer) .
 
 # get the list of candidate in the QTL interval
