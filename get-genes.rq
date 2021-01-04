@@ -1,7 +1,7 @@
 #+ summary: Get all genes located in a specified genomic interval.
 #+ tags:
 #+  - Get all genes located in a specified genomic interval.
-#+  - chrom: "TAIR10:5"
+#+ defaults:
 #+  - begin: "2000000"
 #+  - end: "4000000"
 
